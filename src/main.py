@@ -2,7 +2,7 @@ import pygame
 from game import *
 
 def main():
-    Kid()
+    Kid(shot_se)
     Enemy(shot_group)
     clock = pygame.time.Clock()
     running = True
@@ -10,6 +10,8 @@ def main():
     while(running):
         clock.tick(60)
         screen.fill((0,0,0))
+        bgm.set_volume(0.2)
+        bgm.play(-1)
         group.update()
         group.draw(screen)
         shot_group.update()

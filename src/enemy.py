@@ -7,7 +7,7 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.image.load("../img/enemy.png").convert()
         self.rect = self.image.get_rect()
         self.rect.left = screen_width // 2
-        self.rect.top = screen_height // 2
+        self.rect.bottom = screen_height + 7
         self.hp = 10
         self.damage = 1
         self.shot_group = shot_group

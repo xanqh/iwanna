@@ -6,6 +6,8 @@ from shot import Shot
 
 pygame.mixer.init()
 pygame.init()
+bgm = pygame.mixer.Sound("../msc/bgm.mp3")
+shot_se = pygame.mixer.Sound("../msc/shot.mp3")
 screen = pygame.display.set_mode((screen_width, screen_height))
 group = pygame.sprite.RenderUpdates()
 shot_group = pygame.sprite.Group()
