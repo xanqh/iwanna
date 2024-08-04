@@ -6,6 +6,7 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self, shot_group, SE, target):
         super().__init__(self.containers)
         self.image = pygame.image.load("../img/enemy.png").convert_alpha()
+        self.image.fill((255,255,255)) #デバッグ用
         self.rect = self.image.get_rect()
         self.rect.left = screen_width // 2
         self.rect.bottom = screen_height + 7
@@ -28,7 +29,7 @@ class Enemy(pygame.sprite.Sprite):
         if self.attack_timer > 50:
             target_x = self.target.rect.centerx
             target_y = self.target.rect.centery
-            Enemy_shot(self.rect.x, self.rect.y, self.SE, target_x, target_y)
+            Enemy_shot(self.rect.centerx, self.rect.centery, self.SE, target_x, target_y)
             print("OK")
             self.attack_timer = 0
 
