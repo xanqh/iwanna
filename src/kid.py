@@ -6,7 +6,7 @@ from game import *
 class Kid(pygame.sprite.Sprite):
     def __init__(self, SE):
         super().__init__(self.containers)
-        self.image = pygame.image.load("../img/kid.png").convert()
+        self.image = pygame.image.load("../img/kid.png").convert_alpha()
         self.speed = 3
         self.rect = self.image.get_rect()
         self.rect.x = screen_width // 4
@@ -17,7 +17,6 @@ class Kid(pygame.sprite.Sprite):
         self.acc = 1 # 重力加速度
         self.canJump = True
         self.SE = SE
-        self.shot_se = pygame.mixer.Sound("../msc/shot.mp3")
 
     def isFire(self):
         global timer
@@ -44,20 +43,31 @@ class Kid(pygame.sprite.Sprite):
             self.vel = 0
             self.canJump = True
 
+    def screen_detection(self):
+        if self.rect.left < 0:
+            self.rect.left = 0
+        if self.rect.right > screen_width:
+            self.rect.right = screen_width
+        if self.rect.top < 0:
+            self.rect.top = 0
+        # if self.rect.bottom > screen_height:
+        #     self.rect.bottom = screen_height
+
     def input(self):
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_LEFT]:
             self.rect.x -= self.speed
         elif pressed_keys[pygame.K_RIGHT]:
             self.rect.x += self.speed
-        if pressed_keys[pygame.K_SPACE]:
+        if pressed_keys[pygame.K_LSHIFT]:
             self.jump()
-        if pressed_keys[pygame.K_z] and self.fire == False:
-            self.shot_se.play()
-            shot = Shot(self.rect.x, self.rect.y, self.SE)
-            self.fire = True
+
+    def shot(self):
+        Shot(self.rect.x, self.rect.y, self.SE)
+        self.SE.play()
 
     def update(self):
+        self.screen_detection()
         self.isFire()
         self.input()
         self.kid_update()
