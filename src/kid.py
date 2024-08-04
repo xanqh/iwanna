@@ -1,10 +1,9 @@
 import pygame
 from setting import *
 from shot import Shot
-from game import *
 
 class Kid(pygame.sprite.Sprite):
-    def __init__(self, SE):
+    def __init__(self, enemy_shot_group, SE, screen):
         super().__init__(self.containers)
         self.image = pygame.image.load("../img/kid.png").convert_alpha()
         self.image.fill((255,255,255)) #デバッグ用
@@ -18,6 +17,11 @@ class Kid(pygame.sprite.Sprite):
         self.acc = 1 # 重力加速度
         self.canJump = True
         self.SE = SE
+        self.enemy_shot_group = enemy_shot_group
+        self.font = pygame.font.SysFont("Arial", 80)
+        self.end_text = self.font.render("GAME OVER!!", True, (255, 255, 255))
+        self.screen = screen
+        self.gameover_flg = False
 
     def isFire(self):
         global timer
@@ -68,7 +72,12 @@ class Kid(pygame.sprite.Sprite):
         self.SE.play()
 
     def update(self):
-        self.screen_detection()
-        self.isFire()
-        self.input()
-        self.kid_update()
+        if not self.gameover_flg:
+            self.screen_detection()
+            self.isFire()
+            self.input()
+            self.kid_update()
+            for enemy_shot in self.enemy_shot_group:
+                if self.rect.colliderect(enemy_shot.rect):
+                    self.gameover_flg = True
+                    self.kill()

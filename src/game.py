@@ -11,10 +11,13 @@ pygame.mixer.music.load("../msc/bgm.mp3")
 pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(0.3)
 shot_se = pygame.mixer.Sound("../msc/shot.mp3")
+gameover_se = pygame.mixer.Sound("../msc/gameover.mp3")
+gameover_se.set_volume(0.5)
 screen = pygame.display.set_mode((screen_width, screen_height))
 group = pygame.sprite.RenderUpdates()
 shot_group = pygame.sprite.Group()
+enemy_shot_group = pygame.sprite.Group()
 Enemy.containers = group
 Kid.containers = group
 Shot.containers = group,shot_group
-Enemy_shot.containers = group
+Enemy_shot.containers = group, enemy_shot_group
