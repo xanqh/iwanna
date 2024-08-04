@@ -1,7 +1,6 @@
 import pygame
 import math
 from setting import *
-import color_print
 
 class Enemy_shot(pygame.sprite.Sprite):
     def __init__(self, x, y, SE, target):
