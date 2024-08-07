@@ -32,7 +32,7 @@ def main():
         group.draw(screen)
         shot_group.update()
         shot_group.draw(screen)
-        pygame.display.update()
+        pygame.display.flip()
 
         # print(shot_group)
 
