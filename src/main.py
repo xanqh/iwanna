@@ -3,11 +3,18 @@ from game import *
 
 
 def main():
-    kid = Kid(enemy_shot_group, shot_se, screen)
-    Enemy(shot_group, shot_se, kid)
+    # 初期設定
+    pygame.mixer.init()
+    pygame.init()
+    # ウィンドウの作成
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("i wanna create game with pygame!")
+
+    game = Game()
+
+    
     clock = pygame.time.Clock()
     running = True
-    music_stop = True
 
     while running:
         for event in pygame.event.get():
@@ -17,22 +24,14 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     running = False
                 if event.key == pygame.K_z:
-                    kid.shot()
+                    game.kid.shot()
+                if event.key == pygame.K_r and game.kid.gameover_flg:
+                    game.reset()
                     # shot_se.play()
 
         clock.tick(60)
         screen.fill((0,0,0))
-        group.update()
-        if kid.gameover_flg:
-            screen.blit(kid.end_text, (screen_width // 2 - 240, screen_height / 2 - 40))  # ゲームオーバー画面を表示
-            if music_stop:
-                pygame.mixer.music.stop()
-                gameover_se.play()
-                music_stop = False
-        group.draw(screen)
-        shot_group.update()
-        shot_group.draw(screen)
-        pygame.display.flip()
+        game.run()
 
         # print(shot_group)
 

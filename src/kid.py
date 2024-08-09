@@ -3,7 +3,7 @@ from setting import *
 from shot import Shot
 
 class Kid(pygame.sprite.Sprite):
-    def __init__(self, enemy_shot_group, SE, screen):
+    def __init__(self, enemy_shot_group, SE):
         super().__init__(self.containers)
         self.image = pygame.image.load("../img/kid.png").convert_alpha()
         self.image.fill((255,255,255)) #デバッグ用
@@ -21,7 +21,6 @@ class Kid(pygame.sprite.Sprite):
         self.enemy_shot_group = enemy_shot_group
         self.font = pygame.font.SysFont("Arial", 80)
         self.end_text = self.font.render("GAME OVER!!", True, (255, 255, 255))
-        self.screen = screen
         self.gameover_flg = False
         self.jump_count = 0
         self.max_jumps = 2
