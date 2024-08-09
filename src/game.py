@@ -60,3 +60,4 @@ class Game:
         self.shot_group.draw(self.screen)
         self.shot_group.update()
         pygame.display.flip()
+        self.screen.fill((0,0,0))

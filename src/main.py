@@ -12,7 +12,6 @@ def main():
 
     game = Game()
 
-    
     clock = pygame.time.Clock()
     running = True
 
@@ -27,10 +26,8 @@ def main():
                     game.kid.shot()
                 if event.key == pygame.K_r and game.kid.gameover_flg:
                     game.reset()
-                    # shot_se.play()
 
         clock.tick(60)
-        screen.fill((0,0,0))
         game.run()
 
         # print(shot_group)
