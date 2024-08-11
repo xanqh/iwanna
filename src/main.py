@@ -42,15 +42,13 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                if event.key == pygame.K_z:
+                if event.key == pygame.K_z and game.kid.alive():
                     game.kid.shot()
                 if event.key == pygame.K_r and game.kid.gameover_flg:
                     game.reset()
 
         clock.tick(60)
         game.run()
-
-        # print(shot_group)
 
     pygame.quit()
 

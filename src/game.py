@@ -50,6 +50,8 @@ class Game:
         self.music_stop = True
 
     def run(self):
+        # print(self.shot_group) # デバッグ用
+        # print(self.enemy_shot_group) # デバッグ用
         if self.kid.gameover_flg:
             self.screen.blit(self.kid.end_text, (screen_width // 2 - 240, screen_height / 2 - 40))  # ゲームオーバー画面を表示
             if self.music_stop:

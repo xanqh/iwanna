@@ -18,6 +18,7 @@ class Enemy(pygame.sprite.Sprite):
         self.SE = SE
         self.target = target
         self.dy = 0
+        self.dx = 3
         self.hit_se = pygame.mixer.Sound("../msc/hit.mp3")
         self.hit_se.set_volume(0.4)
         # self.kid_x = kid.rect.x
@@ -30,7 +31,7 @@ class Enemy(pygame.sprite.Sprite):
 
     def attack(self):
         self.attack_timer += 1
-        if self.attack_timer > 50:
+        if self.attack_timer > enemy_shot_timer:
             enemy_shot = Enemy_shot(self.rect.centerx, self.rect.centery, self.SE, self.target)
             # enemy_shot.shot_sound()
             self.attack_timer = 0
@@ -40,7 +41,13 @@ class Enemy(pygame.sprite.Sprite):
             self.dy = -3
         if self.rect.top < 0:
             self.dy = 3
+
+        if self.rect.left < 0:
+            self.dx = 3
+        if self.rect.right > screen_width:
+            self.dx = -3
         self.rect.centery += self.dy
+        self.rect.centerx += self.dx
 
 
     def update(self):

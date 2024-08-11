@@ -38,6 +38,7 @@ class Start:
         Shot.containers = self.group,self.shot_group
 
     def run(self):
+        # print(self.shot_group) # デバッグ用
         self.screen.blit(self.start_text, (screen_width // 2 - 280, screen_height / 2 - 80))
         self.group.draw(self.screen)
         self.group.update()
