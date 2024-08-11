@@ -5,8 +5,10 @@ from shot import Shot
 class Kid(pygame.sprite.Sprite):
     def __init__(self, enemy_shot_group, SE):
         super().__init__(self.containers)
+        self.screen = pygame.display.get_surface()
+        self.animation_list = []
         self.image = pygame.image.load("../img/kid.png").convert_alpha()
-        self.image.fill((255,255,255)) #デバッグ用
+        # self.image.fill((255,255,255)) #デバッグ用
         self.speed = 3
         self.rect = self.image.get_rect()
         self.rect.x = screen_width // 4
@@ -67,11 +69,15 @@ class Kid(pygame.sprite.Sprite):
     def input(self):
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_LEFT]:
+            if self.direction == RIGHT:
+                self.image = pygame.transform.flip(self.image, True, False)
+                self.direction = LEFT
             self.rect.x -= self.speed
-            self.direction = LEFT
         elif pressed_keys[pygame.K_RIGHT]:
+            if self.direction == LEFT:
+                self.image = pygame.transform.flip(self.image, True, False)
+                self.direction = RIGHT
             self.rect.x += self.speed
-            self.direction = RIGHT
         if pressed_keys[pygame.K_LSHIFT]:
             if not self.jump_pressed:
                 self.jump()

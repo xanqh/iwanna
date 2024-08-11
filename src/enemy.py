@@ -33,7 +33,7 @@ class Enemy(pygame.sprite.Sprite):
     def attack(self):
         self.attack_timer += 1
         if self.attack_timer > enemy_shot_timer:
-            # enemy_shot = Enemy_shot(self.rect.centerx, self.rect.centery, self.SE, self.target)
+            enemy_shot = Enemy_shot(self.rect.centerx, self.rect.centery, self.SE, self.target)
             # enemy_shot.shot_sound()
             self.attack_timer = 0
 
