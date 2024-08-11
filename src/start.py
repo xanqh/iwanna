@@ -17,8 +17,9 @@ class Start:
         # 音
         self.music_stop = True
         # スタートテキスト
-        self.font = pygame.font.SysFont("Arial", 70)
-        self.start_text = self.font.render("Press Right Shift\n""to start the game!!", True, (255, 255, 255), None, screen_width)
+        self.font = pygame.font.SysFont("DIN Alternate", 70)
+        self.cmy = (120,120,120)
+        self.start_text = self.font.render("Press Right Shift\nto start the game!!", True, self.cmy, None, screen_width)
 
     def create_group(self):
         self.shot_group = pygame.sprite.Group()
