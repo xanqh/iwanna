@@ -1,5 +1,6 @@
 import pygame
 from game import *
+from start import *
 
 
 def main():
@@ -10,10 +11,29 @@ def main():
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("i wanna create game with pygame!")
 
-    game = Game()
 
     clock = pygame.time.Clock()
+
     running = True
+    startflg = True
+    start = Start()
+    while startflg:
+        clock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                startflg = False
+                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    startflg = False
+                    running = False
+                if event.key == pygame.K_RSHIFT:
+                    startflg = False
+                if event.key == pygame.K_z:
+                    start.kid.shot()
+        start.run()
+
+    game = Game()
 
     while running:
         for event in pygame.event.get():

@@ -19,6 +19,7 @@ class Enemy(pygame.sprite.Sprite):
         self.target = target
         self.dy = 0
         self.hit_se = pygame.mixer.Sound("../msc/hit.mp3")
+        self.hit_se.set_volume(0.4)
         # self.kid_x = kid.rect.x
         # self.kid_y = kid.rect.y
 
