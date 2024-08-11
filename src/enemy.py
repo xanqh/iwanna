@@ -23,16 +23,17 @@ class Enemy(pygame.sprite.Sprite):
         self.hit_se.set_volume(0.4)
         # self.kid_x = kid.rect.x
         # self.kid_y = kid.rect.y
+        self.alive = True
 
     def isAlive(self):
         if self.hp <= 0:
             self.kill()
-            print("win!")
+            self.alive = False
 
     def attack(self):
         self.attack_timer += 1
         if self.attack_timer > enemy_shot_timer:
-            enemy_shot = Enemy_shot(self.rect.centerx, self.rect.centery, self.SE, self.target)
+            # enemy_shot = Enemy_shot(self.rect.centerx, self.rect.centery, self.SE, self.target)
             # enemy_shot.shot_sound()
             self.attack_timer = 0
 

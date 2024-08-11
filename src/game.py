@@ -8,7 +8,6 @@ from enemy_shot import Enemy_shot
 class Game:
     def __init__(self):
         self.screen = pygame.display.get_surface()
-
         self.msc_setting()
         self.create_group()
         self.containers_setting()
@@ -18,6 +17,10 @@ class Game:
         self.enemy = Enemy(self.shot_group, self.shot_se, self.kid)
         # 音
         self.music_stop = True
+        # win text
+        self.font = pygame.font.SysFont("DIN Alternate", 70)
+        self.cmy = (120,120,120)
+        self.win_text = self.font.render("win!!", True, self.cmy, None, screen_width)
 
     def create_group(self):
         self.shot_group = pygame.sprite.Group()
@@ -58,6 +61,8 @@ class Game:
                 pygame.mixer.music.stop()
                 self.gameover_se.play()
                 self.music_stop = False
+        if not self.enemy.alive:
+            self.screen.blit(self.win_text, (screen_width // 2 - 90, screen_height / 2 - 70))
         self.group.draw(self.screen)
         self.group.update()
         self.shot_group.draw(self.screen)
