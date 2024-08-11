@@ -4,3 +4,4 @@ RIGHT = True
 LEFT = False
 enemy_shot_timer = 40
 BLACK = (0, 0, 0)
+enemy_hp = 30

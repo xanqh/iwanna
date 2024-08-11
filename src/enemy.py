@@ -7,11 +7,12 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self, shot_group, SE, target):
         super().__init__(self.containers)
         self.image = pygame.image.load("../img/enemy.png").convert_alpha()
-        self.image.fill((255,255,255)) #デバッグ用
+        self.image = pygame.transform.scale(self.image, (100, 100))
+        # self.image.fill((255,255,255)) #デバッグ用
         self.rect = self.image.get_rect()
         self.rect.right = screen_width - 10
         self.rect.bottom = screen_height + 7
-        self.hp = 10
+        self.hp = enemy_hp
         self.damage = 1
         self.shot_group = shot_group
         self.attack_timer = 0
