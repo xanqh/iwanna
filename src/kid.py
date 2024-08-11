@@ -25,6 +25,7 @@ class Kid(pygame.sprite.Sprite):
         self.jump_count = 0
         self.max_jumps = 2
         self.jump_pressed = False
+        self.direction = RIGHT
 
     def isFire(self):
         global timer
@@ -67,8 +68,10 @@ class Kid(pygame.sprite.Sprite):
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_LEFT]:
             self.rect.x -= self.speed
+            self.direction = LEFT
         elif pressed_keys[pygame.K_RIGHT]:
             self.rect.x += self.speed
+            self.direction = RIGHT
         if pressed_keys[pygame.K_LSHIFT]:
             if not self.jump_pressed:
                 self.jump()
@@ -77,7 +80,7 @@ class Kid(pygame.sprite.Sprite):
             self.jump_pressed = False
 
     def shot(self):
-        Shot(self.rect.centerx, self.rect.y, self.SE)
+        Shot(self.rect.centerx, self.rect.y, self.SE, self.direction)
         self.SE.play()
 
     def update(self):
