@@ -21,6 +21,7 @@ class Game:
         self.font = pygame.font.SysFont("DIN Alternate", 70)
         self.cmy = (120,120,120)
         self.win_text = self.font.render("win!!", True, self.cmy, None, screen_width)
+        self.add_enemy = False
 
     def create_group(self):
         self.shot_group = pygame.sprite.Group()
@@ -51,10 +52,14 @@ class Game:
         pygame.mixer.music.play(-1)
         self.kid.gameover_flg = False
         self.music_stop = True
+        self.add_enemy = False
 
     def run(self):
-        # print(self.shot_group) # デバッグ用
-        # print(self.enemy_shot_group) # デバッグ用
+        # デバッグ用
+        # print(self.shot_group)
+        # print(self.enemy_shot_group)
+        # print(self.enemy.hp) 
+        # print(self.add_enemy)
         if self.kid.gameover_flg:
             self.screen.blit(self.kid.end_text, (screen_width // 2 - 240, screen_height / 2 - 40))  # ゲームオーバー画面を表示
             if self.music_stop:
@@ -69,3 +74,6 @@ class Game:
         self.shot_group.update()
         pygame.display.flip()
         self.screen.fill((0,0,0))
+        if self.enemy.hp < (enemy_hp / 2) and self.add_enemy == False:
+            self.enemy = Enemy(self.shot_group, self.shot_se, self.kid)
+            self.add_enemy = True
