@@ -20,7 +20,7 @@ class Game:
         # win text
         self.font = pygame.font.SysFont("DIN Alternate", 70)
         self.cmy = (120,120,120)
-        self.win_text = self.font.render("win!!", True, self.cmy, None, screen_width)
+        self.win_text = self.font.render("win!!", True, self.cmy, None)
         self.add_enemy = False
 
     def create_group(self):
